@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="navbar-banner layout-no-margin-top">
+        <p>
+        <input class="form-control" type="text" id="username" placeholder="用户昵称">
+        </p>
+        <p>
+        <input class="form-control" type="text" id="email" placeholder="电子邮箱">
+        </p>
+        <p>
+        <input class="form-control" type="text" id="password" placeholder="用户密码">
+        </p>
+        <p>
+        <input class="btn btn-primary btn-user btn-block" id="submit" type="button" value="提交">
+        </p>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="/static/static/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+        $("#submit").click(
+            function () {
+                var nick_name = $("#username").val();
+                var email = $("#email").val();
+                var password = $("#password").val();
+                var send_data = {"nick_name": nick_name,"email": email,"password": password};
+                $.ajax(
+                    {
+                        url: "/ajax_user/",
+                        type: "post",
+                        data: send_data,
+                        success: function (data) {
+                            if(data["is_user"]){
+                                window.location.href = "/"
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error)
+                        }
+                    }
+                )
+
+            }
+        )
+    </script>
+{% endblock %}

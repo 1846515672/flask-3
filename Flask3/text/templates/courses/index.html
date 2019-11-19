@@ -1,0 +1,318 @@
+{% extends "base.html" %}
+{% block title %}
+全部 - 课程 - 实验楼
+{% endblock %}
+{% block content %}
+<div class="container layout layout-margin-top">
+
+
+    <div class="row">
+        <div class="col-md-9 layout-body">
+
+    <div class="content">
+        <div class="row course-cates">
+            <div class="col-md-1 course-cates-title">类别：</div>
+            <div class="col-md-11 course-cates-content">
+                <a class="active" href="/courses/index/3/{{ referer_url1 }}">全部</a>
+                <a class="" href="/courses/index/0/{{ referer_url1 }}">免费</a>
+                <a class="" href="/courses/index/1/{{ referer_url1 }}">限免</a>
+                <div class="course-cates-vip ">
+                    <a target="_blank" href="/courses/index/2/"><img src="/static/img/vip-icon.png"></a>
+                    <a class="" href="/vip/index/">会员</a>
+                </div>
+            </div>
+        </div>
+        <div class="row course-cates">
+            <div class="col-md-1 course-cates-title">标签：</div>
+            <div class="col-md-11 course-cates-content">
+                <a class="active" href="/courses/index/3/">全部</a>
+                {% for label in label_list %}
+                    <a class="" href="{{ referer_url+label.l_name }}/">{{ label.l_name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="content position-relative">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active"><a href="/courses/index/3/?course_type=all&amp;tag=all&amp;fee=all">已上线</a></li>
+            <li class=""><a href="/courses/index/4/?status=preview" class="stat-event" data-stat="preview_course">即将上线</a></li>
+        </ul>
+        <div class="clearfix"></div>
+        <div class="courses-sort">
+            <a  href="/courses/index/2/?course_type=all&amp;tag=all&amp;fee=all&amp;order=latest">最新</a>
+            /
+            <a  href="/courses/index/1/?course_type=all&amp;tag=all&amp;fee=all&amp;order=hotest">最热</a>
+        </div>
+        <div class="search-result"></div>
+        <div class="row">
+{% for course in course_list %}
+<div class="col-md-4 col-sm-6  course">
+    <a class="course-box" href="/courses/show/">
+        <div class="sign-box">
+
+            <i class="fa fa-star-o course-follow pull-right"
+                data-follow-url="/courses/63/follow"
+                data-unfollow-url="/courses/63/unfollow"  style="display:none"></i>
+
+        </div>
+        <div class="course-img">
+
+            <img alt="{{ course.c_name }}" src="{{ course.picture }}">
+
+        </div>
+
+        <div class="course-body">
+            <span class="course-title" data-toggle="tooltip" data-placement="bottom" title="{{ course.c_name }}">{{ course.c_name }}</span>
+        </div>
+        <div class="course-footer">
+			<span class="course-per-num pull-left">
+                <i class="fa fa-users"></i>
+                {{ course.show_number }}
+			</span>
+        </div>
+    </a>
+</div>
+ {% endfor %}
+</div>
+
+
+<nav class="pagination-container">
+    <ul class="pagination">
+
+        <li class="disabled">
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">上一页</span>
+            </a>
+        </li>
+
+
+        <li class="active">
+            <a href="/courses/index/3/?course_type=all&amp;tag=all&amp;fee=all&amp;page=1">1</a>
+        </li>
+
+
+
+        <li class="">
+            <a href="/courses/index/3/?course_type=all&amp;tag=all&amp;fee=all&amp;page=2">2</a>
+        </li>
+
+
+
+        <li class="">
+            <a href="/courses/index/3/?course_type=all&amp;tag=all&amp;fee=all&amp;page=3">3</a>
+        </li>
+
+
+
+        <li class="">
+            <a href="/courses/index/3/?course_type=all&amp;tag=all&amp;fee=all&amp;page=4">4</a>
+        </li>
+
+
+
+        <li class="">
+            <a href="/courses/index/3/?course_type=all&amp;tag=all&amp;fee=all&amp;page=5">5</a>
+        </li>
+
+
+
+        <li>
+            <a href='#'>...</a>
+        </li>
+
+
+
+        <li class="">
+            <a href="/courses/index/3/?course_type=all&amp;tag=all&amp;fee=all&amp;page=24">24</a>
+        </li>
+
+
+
+        <li class="">
+            <a href="/courses/index/3/?course_type=all&amp;tag=all&amp;fee=all&amp;page=25">25</a>
+        </li>
+
+
+
+        <li class="">
+            <a aria-label="Next" href="/courses/index/3/?course_type=all&amp;tag=all&amp;fee=all&amp;page=2">
+                <span aria-hidden="true">下一页</span>
+            </a>
+        </li>
+
+    </ul>
+</nav>
+
+
+    </div>
+
+        </div>
+        <div class="col-md-3 layout-side">
+
+
+
+<div class="panel panel-default panel-userinfo">
+    <div class="panel-body body-userinfo">
+        <div class="media userinfo-header">
+            <div class="media-left">
+                <div class="user-avatar">
+
+                     <a class="avatar" href="#sign-modal" data-toggle="modal" data-sign="signin">
+                         <img class="circle" src="/static/img/logo-grey.png">
+                     </a>
+
+                </div>
+             </div>
+            <div class="media-body">
+
+                 <span class="media-heading username">欢迎来到实验楼</span>
+                 <p class="vip-remain">做实验，学编程</p>
+
+            </div>
+        </div>
+
+        <div class="row userinfo-data">
+
+            <hr>
+            <div class="btn-group-lr">
+            <a href="#sign-modal" type="button" class="btn btn-success col-md-5 col-xs-6 login-btn" data-toggle="modal" data-sign="signin">登录</a>
+            <a href="#sign-modal" type="button" class="btn btn-success col-md-5 col-xs-6 col-md-offset-1 register-btn" data-toggle="modal" data-sign="signup">注册</a>
+            </div>
+
+        </div>
+
+        <div class="userinfo-footer row">
+            <div class="col-md-6 col-xs-6 pos-left">
+
+                <a href="#sign-modal" data-toggle="modal" data-sign="signin"><span class="glyphicon glyphicon-bookmark"></span> 加入私有课</a>
+
+            </div>
+            <div class="col-md-6 col-xs-6 pos-right">
+                <a href="/contribute" target="_blank"><span class="glyphicon glyphicon-send"></span> 我要投稿</a>
+            </div>
+
+            <div id="join-private-course" class="modal fade words-ctrl" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">加入私有课</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div type="margin:15px 0; font:16px;">输入教师提供的私有课程码可以加入教师的私有课程。</div>
+                            <form id="private-course-form" method="POST" action="/courses/join/">
+                                <div class="form-group">
+                                    <label for="code">邀请码</label>
+                                    <input class="form-control" id="code" name="code" type="text" value="">
+                                    <input name="_csrf_token" type=hidden value="1483780974##87f89328c5616669f00302a263fe9061bb852818">
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" onclick="document.getElementById('private-course-form').submit();">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="sidebox">
+
+	<div class="sidebox-header">
+		<h4 class="sidebox-title">最热路径</h4>
+	</div>
+	<div class="sidebox-body course-content side-list-body">
+        <a href="/paths/python"><img style="width:25px;height:25px" src="/static/img/1471513769430.png"> Python 研发工程师</a>
+        <a href="/paths/bigdata"><img style="width:25px;height:25px" src="/static/img/1471513926288.png"> 大数据工程师</a>
+        <a href="/paths/cpp"><img style="width:25px;height:25px" src="/static/img/1471513793360.png"> C++ 研发工程师</a>
+        <a href="/paths/security"><img style="width:25px;height:25px" src="/static/img/1471513867033.png"> 信息安全工程师</a>
+        <a href="/paths/linuxsys"><img style="width:25px;height:25px" src="/static/img/1471514004752.png"> Linux 运维工程师</a>
+	</div>
+
+</div>
+
+<div class="side-image side-qrcode">
+    <img src="/static/img/ShiyanlouQRCode.png">
+    <div class="side-image-text">关注公众号，手机看教程</div>
+</div>
+
+        </div>
+    </div>
+</div>
+
+
+	<div class="modal fade" id="invite-user" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">邀请好友，双方都可获赠实验豆！</h4>
+				</div>
+				<div class="modal-body">
+
+                        <p><h4><a href="#sign-modal" data-toggle="modal" data-sign="signin">登录</a>后邀请好友注册，您和好友将分别获赠3个实验豆！</h4></p>
+
+					<div id="msg-modal"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="flash-message" tabindex="-1" role="dialog">
+		<div class="modal-dialog" rolw="document">
+		</div>
+	</div>
+	<div class="modal fade" id="modal-message" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">注意</h4>
+				</div>
+				<div class="modal-body">
+				</div>
+				<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary confirm" data-dismiss="modal">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="/static/js/vue.min.js"></script>
+<script src="/static/js/vue-resource.js"></script>
+<script>
+        Vue.use(VueResource); //使用是ueresource代替vue
+        var vue = new Vue(
+            {
+                delimiters: ["{[","]}"], //设定以{[]}来调用vue表里，解决和jinjia2的冲突
+                el:"#vue_data",
+                data: {
+                    message: "hello vue",
+                    page_data: []
+                },
+                created: function () {
+                    this.$http.get("/CourseApi/page/page/1/").then(
+                        function (data) {
+                            this.page_data = data["data"]["data"];
+                            console.log(this.page_data)
+                        },
+                        function (error) {
+                            console.log(error)
+                        }
+                    )
+                },
+                methods: {
+
+                }
+            }
+        )
+    </script>
+{% endblock %}
